@@ -16,6 +16,7 @@
 		D3EC36C81E7937670084ABBA /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EC36C71E7937670084ABBA /* Protocols.swift */; };
 		D3EC36D31E7A90600084ABBA /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EC36D21E7A90600084ABBA /* Animator.swift */; };
 		D3EC36D51E7AA42A0084ABBA /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EC36D41E7AA42A0084ABBA /* UIViewController+Extension.swift */; };
+		EB1A68AB1FECFC30000B975C /* QuickPhotoViewer.h in Headers */ = {isa = PBXBuildFile; fileRef = EB1A68AA1FECFC2C000B975C /* QuickPhotoViewer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		D3EC36C71E7937670084ABBA /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		D3EC36D21E7A90600084ABBA /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		D3EC36D41E7AA42A0084ABBA /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		EB1A68AA1FECFC2C000B975C /* QuickPhotoViewer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickPhotoViewer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				D3EC36D21E7A90600084ABBA /* Animator.swift */,
 				D3EC36D41E7AA42A0084ABBA /* UIViewController+Extension.swift */,
 				D3EC36C51E7927050084ABBA /* Constants.swift */,
+				EB1A68AA1FECFC2C000B975C /* QuickPhotoViewer.h */,
 			);
 			path = QuickPhotoViewer;
 			sourceTree = "<group>";
@@ -101,6 +104,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB1A68AB1FECFC30000B975C /* QuickPhotoViewer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
