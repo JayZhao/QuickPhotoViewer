@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name = 'QuickPhotoViewer'
-  s.version = '1.0.0'
+  s.version = '1.0.1'
   s.license = 'MIT'
   s.summary = 'A simple PhotoViewer'
 
@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 
   s.source = {
     :git => 'https://github.com/JayZhao/QuickPhotoViewer.git',
-    :tag => '1.0.0'
+    :tag => '1.0.1'
   }
   s.source_files = ["QuickPhotoViewer/*.swift", "QuickPhotoViewer/QuickPhotoViewer.h"]
 
