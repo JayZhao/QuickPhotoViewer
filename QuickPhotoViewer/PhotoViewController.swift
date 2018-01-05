@@ -162,7 +162,7 @@ extension PhotoViewController {
 extension PhotoViewController {
     // MARK: - Zooming
     fileprivate func updateScrollViewZoomScale() {
-        guard let image = imageView.image else {
+        guard let image = imageView.image, image.size.width > 0 && image.size.height > 0 else {
             return
         }
 
