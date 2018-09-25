@@ -137,9 +137,9 @@ extension QuickPhotoViewer {
         pageViewController.dataSource = self
         pageViewController.delegate = self
 
-        addChildViewController(pageViewController)
+        addChild(pageViewController)
         view.addSubview(pageViewController.view)
-        pageViewController.didMove(toParentViewController: self)
+        pageViewController.didMove(toParent: self)
     }
 
     fileprivate func configureToolbars() {
@@ -153,7 +153,7 @@ extension QuickPhotoViewer {
             topToolbarTop = NSLayoutConstraint(item: topToolbar, attribute: .top, relatedBy: .equal, toItem: topLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0)
             view.addConstraint(topToolbarTop!)
 
-            view.bringSubview(toFront: topToolbar)
+            view.bringSubviewToFront(topToolbar)
             view.layer.insertSublayer(topGradientLayer, below: topToolbar.layer)
         }
         if let bottomToolbar = bottomToolbar {
@@ -166,7 +166,7 @@ extension QuickPhotoViewer {
             bottomToolbarBottom = NSLayoutConstraint(item: bottomToolbar, attribute: .bottom, relatedBy: .equal, toItem: bottomLayoutGuide, attribute: .top, multiplier: 1, constant: 0)
             view.addConstraint(bottomToolbarBottom!)
 
-            view.bringSubview(toFront: bottomToolbar)
+            view.bringSubviewToFront(bottomToolbar)
             view.layer.insertSublayer(bottomGradientLayer, below: bottomToolbar.layer)
         }
         switchViewMode(to: viewMode, with: .none)
@@ -263,7 +263,7 @@ extension QuickPhotoViewer {
 
     // MARK: - Make functions
     fileprivate func makePageViewController() -> UIPageViewController {
-        let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [UIPageViewControllerOptionInterPageSpacingKey: PhotoPreview.pageSpacing])
+        let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [UIPageViewController.OptionsKey.interPageSpacing: PhotoPreview.pageSpacing])
         return pageViewController
     }
 
