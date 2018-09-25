@@ -247,10 +247,10 @@ extension QuickPhotoViewer {
                 })
             case .fullScreen:
                 if let topToolbar = topToolbar, let topToolbarTop = topToolbarTop {
-                    topToolbarTop.constant = -topToolbar.frame.height - 20
+                    topToolbarTop.constant = -topToolbar.frame.height - 40
                 }
                 if let bottomToolbar = bottomToolbar, let bottomToolbarBottom = bottomToolbarBottom {
-                    bottomToolbarBottom.constant = bottomToolbar.frame.height
+                    bottomToolbarBottom.constant = bottomToolbar.frame.height + 40
                 }
                 UIView.animate(withDuration: 0.25, animations: {
                     self.topGradientLayer.opacity = 0
