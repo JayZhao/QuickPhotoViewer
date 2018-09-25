@@ -247,10 +247,18 @@ extension QuickPhotoViewer {
                 })
             case .fullScreen:
                 if let topToolbar = topToolbar, let topToolbarTop = topToolbarTop {
-                    topToolbarTop.constant = -topToolbar.frame.height - 40
+                    if UIScreen.main.bounds.height == 812 || UIScreen.main.bounds.height == 896 {
+                        topToolbarTop.constant = -topToolbar.frame.height - 40
+                    } else {
+                        topToolbarTop.constant = -topToolbar.frame.height - 20
+                    }
                 }
                 if let bottomToolbar = bottomToolbar, let bottomToolbarBottom = bottomToolbarBottom {
-                    bottomToolbarBottom.constant = bottomToolbar.frame.height + 40
+                    if UIScreen.main.bounds.height == 812 || UIScreen.main.bounds.height == 896 {
+                        bottomToolbarBottom.constant = bottomToolbar.frame.height + 40
+                    } else {
+                        bottomToolbarBottom.constant = bottomToolbar.frame.height
+                    }
                 }
                 UIView.animate(withDuration: 0.25, animations: {
                     self.topGradientLayer.opacity = 0
