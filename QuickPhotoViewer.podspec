@@ -14,6 +14,7 @@ Pod::Spec.new do |s|
   }
   s.source_files = ["QuickPhotoViewer/*.swift", "QuickPhotoViewer/QuickPhotoViewer.h"]
 
+  s.swift_version = '5.0'
   s.platform = :ios, '10.0'
   s.requires_arc = true
 
