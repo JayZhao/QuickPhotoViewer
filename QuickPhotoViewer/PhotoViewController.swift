@@ -117,26 +117,30 @@ extension PhotoViewController {
 
         panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(backgroundPanned(_:)))
         panGestureRecognizer.delegate = self
-        view.addGestureRecognizer(panGestureRecognizer)
+        scrollView.addGestureRecognizer(panGestureRecognizer)
     }
 
     fileprivate func loadPhoto() {
-        if let localImage = photo.localImage {
-            imageView.image = localImage
-            self.updateScrollViewZoomScale()
-        } else if let url = photo.url {
-            downloadDelegate?.photoViewController(self, willStartDownloading: photo)
-            let imageResource = ImageResource(downloadURL: url, cacheKey: url.cacheKey)
-            imageView.kf.setImage(with: imageResource,
-                                  placeholder: photo.localThumbnailImage,
-                                  options: nil,
-                                  progressBlock: { (downloadedCount, totalCount) in
-                                    let progress = QPhotoDownloadProgress(downloadedCount: downloadedCount, totalCount: totalCount)
-                                    self.downloadDelegate?.photoViewController(self, isDownloading: self.photo, with: progress)
-                }, completionHandler: { (_, _, _, _) in
-                    self.updateScrollViewZoomScale()
-                    self.downloadDelegate?.photoViewController(self, didFinishDownloading: self.photo)
-            })
+        photo.localImage { (localImage) in
+            if let localImage = localImage {
+                self.imageView.image = localImage
+                self.updateScrollViewZoomScale()
+            } else if let url = self.photo.url {
+                self.downloadDelegate?.photoViewController(self, willStartDownloading: self.photo)
+                let imageResource = ImageResource(downloadURL: url, cacheKey: url.cacheKey)
+                self.photo.localThumbnailImage({ (localThumbnailImage) in
+                    self.imageView.kf.setImage(with: imageResource,
+                                               placeholder: localThumbnailImage,
+                                               options: nil,
+                                               progressBlock: { (downloadedCount, totalCount) in
+                                                let progress = QPhotoDownloadProgress(downloadedCount: downloadedCount, totalCount: totalCount)
+                                                self.downloadDelegate?.photoViewController(self, isDownloading: self.photo, with: progress)
+                    }) { _ in
+                        self.updateScrollViewZoomScale()
+                        self.downloadDelegate?.photoViewController(self, didFinishDownloading: self.photo)
+                    }
+                })
+            }
         }
     }
 
@@ -255,7 +259,7 @@ extension PhotoViewController {
 
             let alpha = min(max(1 - translation.y / (view.bounds.height / 2), PhotoPanning.gestureMinimumAlpha), 1)
             parentPhotoViewer?.setAlpha(alpha)
-        case .possible, .ended, .cancelled, .failed:
+        default:
             let velocity = sender.velocity(in: view)
             let translation = sender.translation(in: view)
 

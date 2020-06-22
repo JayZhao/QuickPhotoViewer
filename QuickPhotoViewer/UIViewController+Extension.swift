@@ -9,10 +9,10 @@
 import UIKit
 
 public extension UIViewController {
-    public func present(_ photoViewer: QuickPhotoViewer,
-                        from view: UIView,
-                        animated flag: Bool = true,
-                        completion: (() -> Void)? = nil) {
+    func present(_ photoViewer: QuickPhotoViewer,
+                 from view: UIView,
+                 animated flag: Bool = true,
+                 completion: (() -> Void)? = nil) {
         let screenshot: UIImage? = {
             guard let layer = UIApplication.shared.keyWindow?.layer else {
                 return nil

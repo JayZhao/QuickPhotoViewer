@@ -27,22 +27,48 @@ public struct QPhoto {
 }
 
 public extension QPhoto {
-    public var localImage: UIImage? {
+    func localImage(_ completionHandler: @escaping (UIImage?) -> Void) {
         if let image = image {
-            return image
+            completionHandler(image)
         } else if let url = url {
-            return KingfisherManager.shared.cache.retrieveImageInMemoryCache(forKey: url.cacheKey) ?? KingfisherManager.shared.cache.retrieveImageInDiskCache(forKey: url.cacheKey)
+            if let retrieveImage = KingfisherManager.shared.cache.retrieveImageInMemoryCache(forKey: url.cacheKey) {
+                completionHandler(retrieveImage)
+            } else {
+                KingfisherManager.shared.cache.retrieveImageInDiskCache(forKey: url.cacheKey) { (result) in
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .success(let value):
+                            completionHandler(value)
+                        case .failure:
+                            completionHandler(nil)
+                        }
+                    }
+                }
+            }
         }
-        return nil
+        completionHandler(nil)
     }
 
-    public var localThumbnailImage: UIImage? {
+    func localThumbnailImage(_ completionHandler: @escaping (UIImage?) -> Void) {
         if let thumbnailImage = thumbnailImage {
-            return thumbnailImage
+            completionHandler(thumbnailImage)
         } else if let thumbnailUrl = thumbnailUrl {
-            return KingfisherManager.shared.cache.retrieveImageInMemoryCache(forKey: thumbnailUrl.cacheKey) ?? KingfisherManager.shared.cache.retrieveImageInDiskCache(forKey: thumbnailUrl.cacheKey)
+            if let retrieveImage = KingfisherManager.shared.cache.retrieveImageInMemoryCache(forKey: thumbnailUrl.cacheKey) {
+                completionHandler(retrieveImage)
+            } else {
+                KingfisherManager.shared.cache.retrieveImageInDiskCache(forKey: thumbnailUrl.cacheKey) { (result) in
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .success(let value):
+                            completionHandler(value)
+                        case .failure:
+                            completionHandler(nil)
+                        }
+                    }
+                }
+            }
         }
-        return nil
+        completionHandler(nil)
     }
 }
 

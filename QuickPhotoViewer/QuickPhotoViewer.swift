@@ -271,7 +271,9 @@ extension QuickPhotoViewer {
 
     // MARK: - Make functions
     fileprivate func makePageViewController() -> UIPageViewController {
-        let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [UIPageViewController.OptionsKey.interPageSpacing: PhotoPreview.pageSpacing])
+        let pageViewController = UIPageViewController(transitionStyle: .scroll,
+                                                      navigationOrientation: .horizontal,
+                                                      options: [UIPageViewController.OptionsKey.interPageSpacing: PhotoPreview.pageSpacing])
         return pageViewController
     }
 
