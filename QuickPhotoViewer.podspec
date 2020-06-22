@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name = 'QuickPhotoViewer'
-  s.version = '1.0.5'
+  s.version = '1.0.6'
   s.license = 'MIT'
   s.summary = 'A simple PhotoViewer'
 
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
 
   s.source = {
     :git => 'https://github.com/JayZhao/QuickPhotoViewer.git',
-    :tag => '1.0.5'
+    :tag => '1.0.6'
   }
   s.source_files = ["QuickPhotoViewer/*.swift", "QuickPhotoViewer/QuickPhotoViewer.h"]
 
@@ -23,5 +23,5 @@ Pod::Spec.new do |s|
   
   s.frameworks = 'UIKit' 
 
-  s.dependency 'Kingfisher', '~> 5.7.1'
+  s.dependency 'Kingfisher', '~> 5.14.0'
 end
