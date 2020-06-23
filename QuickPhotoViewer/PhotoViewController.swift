@@ -129,6 +129,10 @@ extension PhotoViewController {
                 self.downloadDelegate?.photoViewController(self, willStartDownloading: self.photo)
                 let imageResource = ImageResource(downloadURL: url, cacheKey: url.cacheKey)
                 self.photo.localThumbnailImage({ (localThumbnailImage) in
+                    if let localThumbnailImage = localThumbnailImage {
+                        self.imageView.image = localThumbnailImage
+                        self.updateScrollViewZoomScale()
+                    }
                     self.imageView.kf.setImage(with: imageResource,
                                                placeholder: localThumbnailImage,
                                                options: nil,
