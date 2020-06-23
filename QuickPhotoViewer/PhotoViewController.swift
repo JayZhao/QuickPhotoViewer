@@ -295,9 +295,6 @@ extension PhotoViewController: UIGestureRecognizerDelegate {
         }
         if let gestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer, gestureRecognizer == panGestureRecognizer {
             let velocity = panGestureRecognizer.velocity(in: view)
-            guard velocity.y > 0 else {
-                return false
-            }
 
             let radian = atan(velocity.x / velocity.y)
             let angle = radian * 180 / .pi
