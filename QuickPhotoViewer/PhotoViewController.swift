@@ -31,6 +31,7 @@ internal class PhotoViewController: UIViewController {
 
     fileprivate(set) lazy var scrollView: UIScrollView = self.makeScrollView()
     fileprivate(set) lazy var imageView: UIImageView = self.makeImageView()
+    fileprivate(set) lazy var activityIndicator: UIActivityIndicatorView = self.makeActivityIndicator()
 
     fileprivate var imageViewLeading: NSLayoutConstraint!
     fileprivate var imageViewTrailing: NSLayoutConstraint!
@@ -88,6 +89,10 @@ extension PhotoViewController {
         imageViewTop = NSLayoutConstraint(item: imageView, attribute: .top, relatedBy: .equal, toItem: scrollView, attribute: .top, multiplier: 1, constant: 0)
         imageViewBottom = NSLayoutConstraint(item: scrollView, attribute: .bottom, relatedBy: .equal, toItem: imageView, attribute: .bottom, multiplier: 1, constant: 0)
         scrollView.addConstraints([imageViewLeading, imageViewTrailing, imageViewTop, imageViewBottom])
+        
+        view.addSubview(activityIndicator)
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[activityIndicator]|", options: [], metrics: nil, views: ["activityIndicator": activityIndicator]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[activityIndicator]|", options: [], metrics: nil, views: ["activityIndicator": activityIndicator]))
     }
 
     fileprivate func setupGestureRecognizers() {
@@ -132,6 +137,8 @@ extension PhotoViewController {
                     if let localThumbnailImage = localThumbnailImage {
                         self.imageView.image = localThumbnailImage
                         self.updateScrollViewZoomScale()
+                    } else {
+                        self.activityIndicator.startAnimating()
                     }
                     self.imageView.kf.setImage(with: imageResource,
                                                placeholder: localThumbnailImage,
@@ -142,6 +149,7 @@ extension PhotoViewController {
                     }) { _ in
                         self.updateScrollViewZoomScale()
                         self.downloadDelegate?.photoViewController(self, didFinishDownloading: self.photo)
+                        self.activityIndicator.stopAnimating()
                     }
                 })
             }
@@ -164,6 +172,12 @@ extension PhotoViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         return imageView
+    }
+    
+    fileprivate func makeActivityIndicator() -> UIActivityIndicatorView {
+        let indicatorView = UIActivityIndicatorView(style: .whiteLarge)
+        indicatorView.translatesAutoresizingMaskIntoConstraints = false
+        return indicatorView
     }
 }
 
