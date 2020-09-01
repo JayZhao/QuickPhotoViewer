@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name = 'QuickPhotoViewer'
-  s.version = '1.0.9'
+  s.version = '1.1.0'
   s.license = 'MIT'
   s.summary = 'A simple PhotoViewer'
 

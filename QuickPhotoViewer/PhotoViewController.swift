@@ -264,6 +264,7 @@ extension PhotoViewController {
 
         switch sender.state {
         case .began:
+            imageView.translatesAutoresizingMaskIntoConstraints = true
             imageViewPanningStartRect = imageView.frame
         case .changed:
             guard let startRect = imageViewPanningStartRect else {
@@ -296,6 +297,7 @@ extension PhotoViewController {
                     }, completion: { (_) in
                         self.imageViewPanningStartRect = nil
                 })
+                imageView.translatesAutoresizingMaskIntoConstraints = false
             }
         }
     }
